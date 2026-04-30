@@ -1,28 +1,37 @@
+import nodemailer from 'nodemailer';
+
 export default async function handler(req, res) {
-    // Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
-    try {
-        // The data comes from req.body, NOT from document.getElementById
-        const { name, email, message } = req.body;
+    const { name, email, message } = req.body;
 
-        // Validating that data exists
-        if (!name || !email || !message) {
-            return res.status(400).json({ message: 'Missing required fields' });
+    // 1. Create a "Transporter" (The mailman)
+    // This example uses Gmail. 
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER, // Your gmail
+            pass: process.env.EMAIL_PASS  // Your App Password (not your login password)
         }
+    });
 
-        // LOGGING: This will show up in your Vercel Dashboard Logs
-        console.log(`New Message from ${name}: ${message}`);
+    try {
+        // 2. Set up the Email content
+        const mailOptions = {
+            from: email, 
+            to: process.env.EMAIL_USER, // Where you want to receive the mail
+            subject: `New Portfolio Message from ${name}`,
+            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        };
 
-        // SUCCESS RESPONSE
-        return res.status(200).json({ 
-            message: "Success! Your message was received by the server." 
-        });
-        
+        // 3. Send it!
+        await transporter.sendMail(mailOptions);
+
+        return res.status(200).json({ message: "Message sent to inbox!" });
     } catch (error) {
-        console.error("Server Error:", error);
-        return res.status(500).json({ message: "Internal Server Error" });
+        console.error("Email Error:", error);
+        return res.status(500).json({ message: "Failed to send email." });
     }
 }
