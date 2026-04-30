@@ -44,9 +44,9 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* 4. The Sticky Header */
+/* 4. The Sticky Header - UPDATED FOR RESPONSIVENESS */
 .main-header {
-    background-color: var(--header-bg); /* Use variable so it flips in Dark Mode */
+    background-color: var(--header-bg);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
@@ -61,16 +61,19 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem 2rem;
+    flex-wrap: wrap; /* CRITICAL: Allows items to drop to next line instead of breaking */
+    gap: 15px;      /* Adds breathing room when items wrap */
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Slightly smaller base size to prevent early wrapping */
     font-weight: bold;
     color: var(--text-color);
     text-decoration: none;
+    flex-shrink: 0;    /* Prevents the logo from squishing */
 }
 
 .logo span {
@@ -78,7 +81,7 @@ nav {
 }
 
 .logo-img {
-    height: 40px;
+    height: 35px;      /* Slightly smaller for better fit */
     width: auto;
     border-radius: 4px;
     object-fit: contain;
@@ -87,10 +90,12 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
+    gap: 1.5rem;       /* Uses gap instead of margins for cleaner spacing */
 }
 
+/* Removed margin-left: 2rem; - gap: 1.5rem on the 'ul' handles this better */
 nav ul li {
-    margin-left: 2rem;
+    margin-left: 0; 
 }
 
 nav ul li a {
@@ -98,10 +103,18 @@ nav ul li a {
     color: var(--text-muted);
     font-weight: 500;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Prevents "Projects" or "Home" from breaking into two lines */
 }
 
-nav ul li a:hover {
-    color: var(--primary-blue);
+/* Theme Toggle Button (The button in your HTML) */
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 5px;
 }
 
 /* 5. Hero Section */
@@ -273,4 +286,39 @@ nav ul li a:hover {
     margin-top: 3rem;
     font-size: 0.9rem;
     color: var(--text-muted);
+}
+/* 9. Mobile Responsiveness - NEW SECTION */
+@media (max-width: 768px) {
+    nav {
+        justify-content: center; /* Centers everything on tablets/phones */
+        padding: 1rem;
+    }
+
+    /* Option: Hide the long part of the name on small screens if you want */
+    /* To use this, wrap your name in <span class="full-name"> in the HTML */
+    /*
+    .full-name {
+        display: none;
+    }
+    */
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1rem; /* Smaller font on very small phones */
+    }
+    
+    nav ul {
+        gap: 1rem; /* Tighter spacing for the links */
+    }
+
+    .hero-btns {
+        flex-direction: column; /* Stack buttons vertically on small phones */
+        width: 100%;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
 }
