@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock, Paper, Scissors game</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1>Let's play Rock, Paper, Scissors!</h1>
+    <!-- SVG Icons for Rock, Paper, and Scissors -->
+<div class="game-icons">
+  <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 400px; display: block; margin: 0 auto;">
+    <!-- Rock -->
+    <circle cx="100" cy="100" r="80" fill="#f44336" />
+    <text x="100" y="125" font-size="80" text-anchor="middle" fill="white">✊</text>
+    
+    <!-- Paper -->
+    <circle cx="300" cy="100" r="80" fill="#2196f3" />
+    <text x="300" y="125" font-size="80" text-anchor="middle" fill="white">✋</text>
+    
+    <!-- Scissors -->
+    <circle cx="500" cy="100" r="80" fill="#4caf50" />
+    <text x="500" y="125" font-size="80" text-anchor="middle" fill="white">✌️</text>
+  </svg>
+    <main>
+      <details class="rules-container">
+        <summary>Rules to the game</summary>
+
+        <p>You will be playing against the computer.</p>
+        <p>You can choose between Rock, Paper, and Scissors.</p>
+        <p>The first one to three points wins.</p>
+
+        <p>Here are the rules to getting a point in the game:</p>
+        <ul>
+          <li>Rock beats Scissors</li>
+          <li>Scissors beats Paper</li>
+          <li>Paper beats Rock</li>
+        </ul>
+        <p>
+          If the player and computer choose the same option (e.g., Paper and
+          Paper), then no one gets the point.
+        </p>
+      </details>
+
+      <div class="score-container">
+        <strong
+          >Player Score: <span class="score" id="player-score">0</span></strong
+        >
+        <strong
+          >Computer Score:
+          <span class="score" id="computer-score">0</span></strong
+        >
+      </div>
+
+      <section class="options-container">
+        <h2>Choose an option:</h2>
+        <div class="btn-container">
+          <button id="rock-btn" class="btn">Rock</button>
+          <button id="paper-btn" class="btn">Paper</button>
+          <button id="scissors-btn" class="btn">Scissors</button>
+        </div>
+        <div class="game-container">
+  <div id="player-hand" class="hand">✊</div>
+  <div id="computer-hand" class="hand">✊</div>
+</div>
+      </section>
+
+      <div class="results-container">
+        <p id="results-msg"></p>
+        <p id="winner-msg"></p>
+        <button class="btn" id="reset-game-btn">Play again?</button>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
