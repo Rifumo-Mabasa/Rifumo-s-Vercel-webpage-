@@ -1,0 +1,22 @@
+{
+  "name": "rifumo-portfolio",
+  "version": "1.0.0",
+  "description": "Professional Portfolio - Developer & Engineer",
+  "main": "api/contact.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "vercel dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rifumo-Mabasa/Rifumo-s-Webpage.git"
+  },
+  "author": "Rifumo Mabasa",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
+  }
+}

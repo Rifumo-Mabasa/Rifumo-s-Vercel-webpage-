@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated CSS link to match common naming (styles.css) -->
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Rifumo Mabasa | Developer & Engineer</title>
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <div class="logo">
+                <img class="logo-img" src="DG_Logo.png" alt="Data Guild Logo"> 
+                Rifumo Mabasa | Developer & Engineer <span>(RM.)</span>
+            </div>
+           
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact-section">Contact</a></li>
+            </ul>
+            
+            <button id="theme-toggle" class="theme-btn">
+                <span class="sun">☀️</span>
+                <span class="moon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Bridging the Gap Between Electrical Engineering & Modern Web Development</h1>
+                <h2>Building high-performance, accessible web solutions for technical industries</h2>
+                <p>
+                    I combine the precision of engineering with modern front-end expertise to build 
+                    functional, accessible, and high-performance digital products.
+                </p>
+
+                <div class="hero-btns">
+                    <a href="#projects" class="btn-primary">View My Work</a>
+                    <a href="#contact-section" class="btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-info">
+                        <h3>AquaFlow Solutions</h3>
+                        <p class="project-tag">Business Strategy & Logistics</p>
+                        <p>A comprehensive business model for delivering purified water (10L-50L) to residential areas in Gauteng, addressing local water scarcity through structured logistics.</p>
+                        <ul class="project-tech">
+                            <li>Market Analysis</li>
+                            <li>Operational Logic</li>
+                            <li>SANS 241 Compliance</li>
+                        </ul>
+                        <a href="#" class="view-project">Read Full Plan →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-info">
+                        <h3>WishesAreWeird</h3>
+                        <p class="project-tag">Business Strategy & Marketing</p>
+                        <p>A comprehensive business model for bringing ideas to life through animation.</p>
+                        <ul class="project-tech">
+                            <li>Market Analysis</li>
+                            <li>Operational distribution</li>
+                            <li>Branding & Marketing</li>
+                        </ul>
+                        <a href="#" class="view-project">Read Full Plan →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact-section">
+            <h2>Let's Connect</h2> 
+            <p>Ready to discuss your next technical project? Reach out below.</p>
+            
+            <form id="contact-form" class="contact-form"> 
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Full Name" required> 
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Your Email" required> 
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Tell me about your project" rows="5" required></textarea> 
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+            
+            <!-- This div is necessary for the JavaScript to show success/error messages -->
+            <div id="response-msg" style="margin-top: 10px; font-weight: bold;"></div>
+            
+            <div class="contact-details">
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:rifumomabasa1@gmail.com">rifumomabasa1@gmail.com</a></li>
+                    <li><strong>Location:</strong> <a href="https://www.google.com/maps/search/Gauteng,+South+Africa" target="_blank">Gauteng, South Africa</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
