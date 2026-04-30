@@ -1,88 +1,28 @@
-const options = ["Rock", "Paper", "Scissors"];
+export default async function handler(req, res) {
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: 'Method Not Allowed' });
+    }
 
-function getRandomComputerResult() {
-  const randomIndex = Math.floor(Math.random() * options.length);
-  return options[randomIndex];
+    try {
+        // The data comes from req.body, NOT from document.getElementById
+        const { name, email, message } = req.body;
+
+        // Validating that data exists
+        if (!name || !email || !message) {
+            return res.status(400).json({ message: 'Missing required fields' });
+        }
+
+        // LOGGING: This will show up in your Vercel Dashboard Logs
+        console.log(`New Message from ${name}: ${message}`);
+
+        // SUCCESS RESPONSE
+        return res.status(200).json({ 
+            message: "Success! Your message was received by the server." 
+        });
+        
+    } catch (error) {
+        console.error("Server Error:", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 }
-
-function hasPlayerWonTheRound(playerChoice, computerChoice) {
-  return (
-    (playerChoice === "Rock" && computerChoice === "Scissors") ||
-    (playerChoice === "Scissors" && computerChoice === "Paper") ||
-    (playerChoice === "Paper" && computerChoice === "Rock")
-  );
-}
-
-let playerScore = 0;
-let computerScore = 0;
-
-function getRoundResults(userOption) {
-  const computerResult = getRandomComputerResult();
-
-  if (hasPlayerWonTheRound(userOption, computerResult)) {
-    playerScore++;
-    return `Player wins! ${userOption} beats ${computerResult}`;
-  } else if (computerResult === userOption) {
-    return `It's a tie! Both chose ${userOption}`;
-  } else {
-    computerScore++;
-    return `Computer wins! ${computerResult} beats ${userOption}`;
-  }
-}
-
-const playerScoreSpanElement = document.getElementById("player-score");
-const computerScoreSpanElement = document.getElementById("computer-score");
-const roundResultsMsg = document.getElementById("results-msg");
-const winnerMsgElement = document.getElementById("winner-msg");
-const optionsContainer = document.querySelector(".options-container");
-const resetGameBtn = document.getElementById("reset-game-btn");
-
-function showResults(userOption) {
-  roundResultsMsg.innerText = getRoundResults(userOption);
-  computerScoreSpanElement.innerText = computerScore;
-  playerScoreSpanElement.innerText = playerScore;
-
-  if (playerScore === 3 || computerScore === 3) {
-    winnerMsgElement.innerText = `${
-      playerScore === 3 ? "Player" : "Computer"
-    } has won the game!`;
-
-    resetGameBtn.style.display = "block";
-    optionsContainer.style.display = "none";
-  }
-};
-function resetGame() {
-  // 1. Reset the logic variables
-  playerScore = 0;
-  computerScore = 0;
-
-  // 2. Update the score displays in the UI
-  playerScoreSpanElement.innerText = playerScore;
-  computerScoreSpanElement.innerText = computerScore;
-
-  // 3. Reset the UI layout
-  resetGameBtn.style.display = "none";
-  optionsContainer.style.display = "block";
-
-  // 4. Clear the text messages
-  winnerMsgElement.innerText = "";
-  roundResultsMsg.innerText = "";
-}
-
-resetGameBtn.addEventListener("click", resetGame);
-
-const rockBtn = document.getElementById("rock-btn");
-const paperBtn = document.getElementById("paper-btn");
-const scissorsBtn = document.getElementById("scissors-btn");
-
-rockBtn.addEventListener("click", function () {
-  showResults("Rock");
-});
-
-paperBtn.addEventListener("click", function () {
-  showResults("Paper");
-});
-
-scissorsBtn.addEventListener("click", function () {
-  showResults("Scissors");
-});
